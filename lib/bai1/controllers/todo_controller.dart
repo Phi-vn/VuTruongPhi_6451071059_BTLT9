@@ -37,4 +37,18 @@ class TodoController {
   Future<void> deleteTask(String id) async {
     await _tasksCollection.doc(id).delete();
   }
+
+  // Nạp dữ liệu mẫu
+  Future<void> seedTasks() async {
+    final List<String> sampleTasks = [
+      'Học Flutter cơ bản',
+      'Kết nối Firebase Firestore',
+      'Xây dựng giao diện quản lý',
+      'Đẩy code lên GitHub',
+    ];
+
+    for (var title in sampleTasks) {
+      await addTask(title);
+    }
+  }
 }

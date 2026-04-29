@@ -32,4 +32,18 @@ class StudentController {
   Future<void> deleteStudent(String studentId) async {
     await _studentsCollection.doc(studentId).delete();
   }
+
+  // Nạp dữ liệu mẫu (Seeding)
+  Future<void> seedStudents() async {
+    final List<Map<String, dynamic>> sampleData = [
+      {'name': 'Nguyễn Văn A', 'age': 20, 'major': 'Công nghệ thông tin', 'createdAt': FieldValue.serverTimestamp()},
+      {'name': 'Trần Thị B', 'age': 21, 'major': 'Kinh tế', 'createdAt': FieldValue.serverTimestamp()},
+      {'name': 'Lê Văn C', 'age': 22, 'major': 'Ngôn ngữ Anh', 'createdAt': FieldValue.serverTimestamp()},
+      {'name': 'Phạm Minh D', 'age': 19, 'major': 'Thiết kế đồ họa', 'createdAt': FieldValue.serverTimestamp()},
+    ];
+
+    for (var data in sampleData) {
+      await _studentsCollection.add(data);
+    }
+  }
 }

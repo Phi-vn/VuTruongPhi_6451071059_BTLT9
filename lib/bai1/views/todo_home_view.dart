@@ -79,12 +79,9 @@ class _TodoHomeViewState extends State<TodoHomeView> {
         actions: [
           IconButton(
             tooltip: 'Thêm việc mẫu',
-            icon: const Icon(Icons.auto_awesome),
+            icon: const Icon(Icons.download),
             onPressed: () async {
-              await _controller.addTask('Tập thể dục buổi sáng');
-              await _controller.addTask('Hoàn thiện UI Flutter Bài 1');
-              await _controller.addTask('Ôn thi kết thúc môn Di động');
-              await _controller.addTask('Nộp bài tập trên hệ thống trường');
+              await _controller.seedTasks();
             },
           ),
         ],
@@ -101,8 +98,21 @@ class _TodoHomeViewState extends State<TodoHomeView> {
           }
 
           if (!snapshot.hasData || snapshot.data!.isEmpty) {
-            return const Center(
-              child: Text('Chưa có công việc nào. Hãy thêm mới!'),
+            return Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text('Chưa có công việc nào.'),
+                  const SizedBox(height: 16),
+                  ElevatedButton.icon(
+                    onPressed: () async {
+                      await _controller.seedTasks();
+                    },
+                    icon: const Icon(Icons.download),
+                    label: const Text('Nạp dữ liệu mẫu'),
+                  ),
+                ],
+              ),
             );
           }
 

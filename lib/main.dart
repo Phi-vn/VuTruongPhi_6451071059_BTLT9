@@ -3,7 +3,6 @@ import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 
 // import 'bai1/apps/todo_app.dart';
-// import 'bai2/apps/auth_app.dart';
 import 'bai3/apps/student_app.dart';
 
 void main() async {
@@ -16,7 +15,5 @@ void main() async {
     debugPrint('Firebase init error: $e');
   }
   // runApp(const TodoApp());
-  // runApp(const AuthApp());
   runApp(const StudentApp());
 }
-

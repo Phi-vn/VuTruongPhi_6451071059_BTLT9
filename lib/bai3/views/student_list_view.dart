@@ -40,7 +40,26 @@ class _StudentListViewState extends State<StudentListView> {
           final students = snapshot.data ?? [];
 
           if (students.isEmpty) {
-            return const Center(child: Text('Chưa có sinh viên nào. Bấm nút + để thêm!'));
+            return Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text('Chưa có sinh viên nào.'),
+                  const SizedBox(height: 16),
+                  ElevatedButton.icon(
+                    onPressed: () async {
+                      await _controller.seedStudents();
+                    },
+                    icon: const Icon(Icons.download),
+                    label: const Text('Nạp dữ liệu mẫu'),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.teal,
+                      foregroundColor: Colors.white,
+                    ),
+                  ),
+                ],
+              ),
+            );
           }
 
           return ListView.builder(
